@@ -26,8 +26,14 @@ class VersionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Version::create($request->all());
+        $this->validate($request, [
+            'name' => 'required|string',
+            'technology_id' => 'required|numeric'
+        ]);
+        
+        $version = Version::create($request->all());
+
+        return response()->json($version, 201);
     }
 
     /**
@@ -38,7 +44,7 @@ class VersionController extends Controller
      */
     public function show(Version $version)
     {
-        //
+        return $version;
     }
 
     /**

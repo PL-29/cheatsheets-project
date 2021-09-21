@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Technology;
+use App\Models\Cheatsheet;
 use Illuminate\Http\Request;
 
-class TechnologyController extends Controller
+class CheatsheetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        $technologies = Technology::all();
-        return $technologies->toJson(JSON_PRETTY_PRINT);
+        $cheatsheets = Cheatsheet::all();
+        return $cheatsheets->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -27,44 +27,38 @@ class TechnologyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string'
+            'title' => 'required|string',
+            'code_snippet' => 'required|string',
+            'explanation' => 'required|string',
+            'public' => 'required|boolean',
+            'author_id' => 'required|numeric',
+            'technology_id' => 'required|numeric'
         ]);
+        
+        $cheatsheet = Cheatsheet::create($request->all());
 
-        $technology = Technology::create($request->all());
-
-        return response()->json($technology, 201);
+        return response()->json($cheatsheet, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Models\Cheatsheet  $cheatsheet
      * @return \Illuminate\Http\Response
      */
-    public function show(Technology $technology)
+    public function show(Cheatsheet $cheatsheet)
     {
-        return $technology;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Technology  $technology
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Technology $technology)
-    {
-        //
+        return $cheatsheet;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Models\Cheatsheet  $cheatsheet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Technology $technology)
+    public function update(Request $request, Cheatsheet $cheatsheet)
     {
         //
     }
@@ -72,10 +66,10 @@ class TechnologyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  \App\Models\Cheatsheet  $cheatsheet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Technology $technology)
+    public function destroy(Cheatsheet $cheatsheet)
     {
         //
     }

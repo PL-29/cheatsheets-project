@@ -26,7 +26,13 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string'
+        ]);
+        
+        $country = Country::create($request->all());
+        
+        return response()->json($country, 201);      
     }
 
     /**
@@ -49,7 +55,9 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
-        //
+        $country->update($request->all());
+
+        return response()->json($country, 200);
     }
 
     /**

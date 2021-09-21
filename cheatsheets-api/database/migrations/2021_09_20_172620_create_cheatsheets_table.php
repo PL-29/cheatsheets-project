@@ -22,7 +22,7 @@ class CreateCheatsheetsTable extends Migration
             $table->integer('author_id');
             $table->integer('technology_id');
             $table->integer('topic_id')->nullable();
-            $table->integer('technology_version_id');
+            $table->integer('technology_version_id')->nullable();
             $table->foreign('author_id')->references('id')->on('users');
             $table->foreign('technology_id')->references('id')->on('technologies');
             $table->foreign('topic_id')->references('id')->on('topics');

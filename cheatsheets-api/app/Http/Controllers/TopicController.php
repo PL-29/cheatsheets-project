@@ -14,7 +14,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = Topic::all();
+        return $topics->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -25,7 +26,14 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'technology_id' => 'required|numeric'
+        ]);
+        
+        $topic = Topic::create($request->all());
+
+        return response()->json($topic, 201);
     }
 
     /**
@@ -36,7 +44,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
+        return $topic;
     }
 
     /**

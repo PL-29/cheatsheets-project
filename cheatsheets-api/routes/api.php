@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VersionController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\CheatsheetController;
+use App\Http\Controllers\TopicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,8 @@ use App\Http\Controllers\TechnologyController;
     return $request->user();
 });*/
 
-
-Route::resource('versions', VersionController::class);
-Route::resource('countries', CountryController::class);
-Route::resource('technologies', TechnologyController::class);
+Route::apiResource('versions', VersionController::class);
+Route::apiResource('countries', CountryController::class);
+Route::apiResource('technologies', TechnologyController::class);
+Route::apiResource('cheatsheets', CheatsheetController::class);
+Route::apiResource('topics', TopicController::class);
