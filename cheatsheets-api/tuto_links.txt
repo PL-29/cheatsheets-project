@@ -1,0 +1,2 @@
+https://www.toptal.com/laravel/restful-laravel-api-tutorial
+https://rapidapi.com/blog/how-to-create-an-api-in-php/
